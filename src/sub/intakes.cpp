@@ -36,7 +36,7 @@ void Intake::toggleStopper() {
 }
 
 // Color sorting
-void color_sort() {
+void Intake::color_sort() {
     coloring.set_led_pwm(50);
     if (coloring.get_hue() >= 0.0 && coloring.get_hue() <= 30.0 && !red) {
         pros::lcd::print(4, "nihao1");
@@ -56,7 +56,7 @@ void color_sort() {
 
 }
 // Double parking 
-void park() {
+void Intake::park() {
   if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
       doublePark.toggle();
   }

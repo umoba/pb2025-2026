@@ -100,7 +100,7 @@ void autonomous() {
       console.printf("Y: %f", chassis.getPose().y); // y
       console.printf("Theta: %f", filteredIMU.get_heading()); // Use filtered heading
       console.clear();
-      // subsystem.intake.color_sort();
+      subsystem.intake.color_sort();
       pros::delay(50); // Ensure sufficient delay
 
           
@@ -114,24 +114,23 @@ void autonomous() {
  * Runs in driver control
  */
 void opcontrol() {
-    // chassis.setPose(0, 0, 0);
-    // filteredIMU.set_heading(0);
-    // while (true) {
-    //     // get joystick positions
-    //     int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    //     int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    chassis.setPose(0, 0, 0);
+    filteredIMU.set_heading(0);
+    while (true) {
+        // get joystick positions
+        int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
         
-    //     // move the robot
-    //     chassis.tank(-rightY, -leftY);
+        // move the robot
+        chassis.tank(-rightY, -leftY);
 
-    //     // run the subsystems
-    //     subsystem.intake.run();
-    //     subsystem.tongue.run();
-    //     subsystem.highGoal.run();
-    //     subsystem.intake.park();
+        // run the subsystems
+        subsystem.intake.run();
+        subsystem.tongue.run();
+        subsystem.intake.park();
 
         
-    //     // delay to save resources
-    //     pros::delay(50);
-    // }
+        // delay to save resources
+        pros::delay(50);
+    }
 }
