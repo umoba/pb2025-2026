@@ -116,6 +116,7 @@ void autonomous() {
 void opcontrol() {
     chassis.setPose(0, 0, 0);
     filteredIMU.set_heading(0);
+    console.printf("Hello");
     while (true) {
         // get joystick positions
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
