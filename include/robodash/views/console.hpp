@@ -76,6 +76,13 @@ class Console {
 		print(fstr);
 	}
 
+  template <typename... Params>
+	void printfln(std::string fmt, Params... args) {
+		char fstr[sizeof(fmt) + sizeof...(args)];
+		sprintf(fstr, fmt.c_str(), args...);
+		println(fstr);
+	}
+
 	/**
 	 * @brief Set this view to the active view
 	 */

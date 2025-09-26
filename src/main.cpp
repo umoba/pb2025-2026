@@ -95,14 +95,12 @@ void competition_initialize() {
 void autonomous() {
   pros::Task screenTask([&]() {
     while (true) {
-      console.printf("Auton: %s", selectedAuton);
-      console.printf("X: %f", chassis.getPose().x); // x
-      console.printf("Y: %f", chassis.getPose().y); // y
-      console.printf("Theta: %f", filteredIMU.get_heading()); // Use filtered heading
-      console.clear();
+      console.printfln("X: %f", chassis.getPose().x); // x
+      console.printfln("Y: %f", chassis.getPose().y); // y
+      console.printfln("Theta: %f", filteredIMU.get_heading()); // Use filtered heading
       subsystem.intake.color_sort();
       pros::delay(50); // Ensure sufficient delay
-
+      console.clear();
           
     }
   });
