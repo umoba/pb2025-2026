@@ -17,9 +17,14 @@ namespace Robot {
     pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
     // Motors
-    pros::MotorGroup left({-8, -12, -13},pros::MotorGearset::blue);
-    pros::MotorGroup right({3, 2, 7},pros::MotorGearset::blue);
-    pros::MotorGroup intakes({1, 2},pros::MotorGearset::blue);
+    pros::MotorGroup left({-11, -12, -17},pros::MotorGearset::blue);
+    pros::MotorGroup right({1, 2, 7},pros::MotorGearset::blue);
+    pros::MotorGroup intakes({10, 20},pros::MotorGearset::blue);
+    pros::Motor firstIntake(10, pros::MotorGearset::green);
+    pros::Motor midIntake(-20, pros::MotorGearset::green);
+    pros::Motor goalIntake(19, pros::MotorGearset::green);
+    pros::Motor flexIntake(18, pros::MotorGearset::green);
+
 
     // Rotational
 

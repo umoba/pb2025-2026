@@ -12,19 +12,67 @@ Intake::Intake() : running(false), runningrev(false), stopped(false), state(0) {
 
 bool red = false;
 static bool elevate;
+const int all = 4;
 static int states[4] = {1, 2, 3, 4};
+int state = -1;
+void intake(int n) {
+  // high goal
+  if (n == 0) {
+    firstIntake.move_velocity(200);
+    midIntake.move_velocity(200);
+    goalIntake.move_velocity(200);
+    flexIntake.move_velocity(200);
+  }
+  // mid goal
+  else if (n == 1) {
+    firstIntake.move_velocity(200);
+    midIntake.move_velocity(200);
+    goalIntake.move_velocity(200);
+    flexIntake.move_velocity(-200);
+  }
+  // low goal
+  else if (n == 2) {
+    firstIntake.move_velocity(-200);
+    midIntake.move_velocity(-200);
+    goalIntake.move_velocity(-200);
+    flexIntake.move_velocity(200);
+  }
+
+  // storage
+  else if (n == 3) {
+    firstIntake.move_velocity(200);
+    midIntake.move_velocity(200);
+    goalIntake.move_velocity(-200);
+    flexIntake.move_velocity(-200);
+  }
+}
+
+
+// static std::vector<std::vector<bool>> states = 
+// {
+//   {true, true, true, true}, 
+//   { true, true, true, false}
+// }
+void intakeState(int a) {
+  
+}
+
 // Run the intake
 void Intake::run() {
   if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)) {
-      intakes.move_velocity(600);
-      running = !running; 
-      runningrev = false;
+    state++;
+    if (state==4) {
+      state=0;
+    }
+      intake(state);
   }
   if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)) {
-      intakes.move_velocity(-600);
-      runningrev = !runningrev; 
-      running = false;
+      firstIntake.move_velocity(0);
+      midIntake.move_velocity(0);
+      goalIntake.move_velocity(0);
+      flexIntake.move_velocity(0);
   }
+
 }
 
 // Toggle whether the intake is stopping the blocks from scoring or not
@@ -39,7 +87,6 @@ void Intake::toggleStopper() {
 void Intake::color_sort() {
     coloring.set_led_pwm(50);
     if (coloring.get_hue() >= 0.0 && coloring.get_hue() <= 30.0 && !red) {
-        pros::lcd::print(4, "nihao1");
         if (distance.get_object_velocity() > 0.05 || distance2.get_object_velocity() > 0.05) {
             sorter.extend();
             pros::delay(100);

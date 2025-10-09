@@ -36,6 +36,11 @@ namespace Robot {
     extern pros::MotorGroup intakes;
     extern pros::MotorGroup left;
     extern pros::MotorGroup right;
+    extern pros::Motor firstIntake;
+    extern pros::Motor midIntake;
+    extern pros::Motor goalIntake;
+    extern pros::Motor flexIntake;
+
 
     // Rotational
 

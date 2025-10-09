@@ -11,8 +11,21 @@ using namespace Robot::Globals;
 ASSET(ringTest_txt); // '.' replaced with "_" to make c++ happy
 
 std::string selectedAuton = "";
-void a() { std::cout << "Running best auton" << std::endl; }
-void b() { std::cout << "Running simple auton " << std::endl; }
+void a() { 
+  left.move_velocity(-280);
+  right.move_velocity(-280);
+  pros::delay(1000);
+  left.move_velocity(0);
+  right.move_velocity(0);
+  std::cout << "Running best auton" << std::endl; }
+void b() { 
+  pros::delay(2000);
+  left.move_velocity(-280);
+  right.move_velocity(-280);
+  pros::delay(1000);
+  left.move_velocity(0);
+  right.move_velocity(0);
+  std::cout << "Running simple auton " << std::endl; }
 void c() { std::cout << "Running good auton" << std::endl; }
 void d() { std::cout << "Running skills" << std::endl; }
 
@@ -94,6 +107,7 @@ void competition_initialize() {
 
 void autonomous() {
   pros::Task screenTask([&]() {
+    selector.run_auton();
     while (true) {
       console.printfln("X: %f", chassis.getPose().x); // x
       console.printfln("Y: %f", chassis.getPose().y); // y
@@ -118,10 +132,10 @@ void opcontrol() {
     while (true) {
         // get joystick positions
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-        int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+        int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
         
         // move the robot
-        chassis.tank(-rightY, -leftY);
+        chassis.arcade(leftY, rightX);
 
         // run the subsystems
         subsystem.intake.run();
