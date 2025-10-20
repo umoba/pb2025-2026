@@ -15,44 +15,62 @@ static bool elevate;
 const int all = 4;
 static int states[4] = {1, 2, 3, 4};
 int state = -1;
-void intake(int n) {
+void intake(int state) {
   // high goal
-  if (n == 0) {
+  if (state == 0) {
     firstIntake.move_velocity(200);
     midIntake.move_velocity(200);
     goalIntake.move_velocity(200);
     flexIntake.move_velocity(200);
   }
   // mid goal
-  else if (n == 1) {
+  else if (state == 1) {
     firstIntake.move_velocity(200);
     midIntake.move_velocity(200);
     goalIntake.move_velocity(200);
     flexIntake.move_velocity(-200);
   }
   // low goal
-  else if (n == 2) {
-    firstIntake.move_velocity(-200);
+  else if (state == 2) {
+    firstIntake.move_velocity(-100);
     midIntake.move_velocity(-200);
     goalIntake.move_velocity(-200);
     flexIntake.move_velocity(200);
   }
 
   // storage
-  else if (n == 3) {
+  else if (state == 3) {
     firstIntake.move_velocity(200);
-    midIntake.move_velocity(200);
+    midIntake.move_velocity(-200);
     goalIntake.move_velocity(-200);
     flexIntake.move_velocity(-200);
+  }
+  // outtake from storage ((leave system)) 
+  else if (state == 4) {
+    firstIntake.move_velocity(-200);
+    midIntake.move_velocity(200);
+    goalIntake.move_velocity(0);
+    flexIntake.move_velocity(0);
+
+  }
+    // outtake to scoring high goal
+  else if (state == 5) {
+    firstIntake.move_velocity(-100);
+    midIntake.move_velocity(200);
+    goalIntake.move_velocity(200);
+    flexIntake.move_velocity(200);
+
+  }
+  // stop
+  else if (state == 6) {
+    firstIntake.move_velocity(0);
+    midIntake.move_velocity(0);
+    goalIntake.move_velocity(0);
+    flexIntake.move_velocity(0);
   }
 }
 
 
-// static std::vector<std::vector<bool>> states = 
-// {
-//   {true, true, true, true}, 
-//   { true, true, true, false}
-// }
 void intakeState(int a) {
   
 }
@@ -61,16 +79,13 @@ void intakeState(int a) {
 void Intake::run() {
   if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)) {
     state++;
-    if (state==4) {
+    if (state==6) {
       state=0;
     }
       intake(state);
   }
   if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)) {
-      firstIntake.move_velocity(0);
-      midIntake.move_velocity(0);
-      goalIntake.move_velocity(0);
-      flexIntake.move_velocity(0);
+    intake(4);
   }
 
 }
