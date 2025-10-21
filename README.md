@@ -15,3 +15,8 @@
 
 1. Changed the Intake class algorithm
 2. Added different paths for the blocks in the robot
+
+#10.21_1
+
+1. Chnaged Intake to a hold 
+2. Changed stir curve

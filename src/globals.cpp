@@ -17,8 +17,8 @@ namespace Robot {
     pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
     // Motors
-    pros::MotorGroup left({-11, -12, -17},pros::MotorGearset::blue);
-    pros::MotorGroup right({1, 2, 7},pros::MotorGearset::blue);
+    pros::MotorGroup right({11, 12, 17},pros::MotorGearset::blue);
+    pros::MotorGroup left({-1, -2, -7},pros::MotorGearset::blue);
     pros::MotorGroup intakes({10, 20},pros::MotorGearset::blue);
     pros::Motor firstIntake(-13, pros::MotorGearset::green);
     pros::Motor midIntake(-20, pros::MotorGearset::green);
@@ -111,7 +111,7 @@ namespace Robot {
     // input curve for steer input during driver control
     lemlib::ExpoDriveCurve steerCurve(3, // joystick deadband out of 127
               10, // minimum output where drivetrain will move out of 127
-              1.7 // expo curve gain
+              1.2 // expo curve gain
     );
 
     // create the chassis

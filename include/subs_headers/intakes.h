@@ -23,8 +23,10 @@ public:
 
 private:
    // bool elevate;
-   bool running;
-   bool runningrev;
+   bool l1;
+   bool l2;
+   bool up;
+   bool dn;
    bool stopped; //stopping the intake to load
    int state;
    /**

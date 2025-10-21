@@ -12,16 +12,16 @@ ASSET(ringTest_txt); // '.' replaced with "_" to make c++ happy
 
 std::string selectedAuton = "";
 void a() { 
-  left.move_velocity(-280);
-  right.move_velocity(-280);
+  left.move_velocity(-100);
+  right.move_velocity(-100);
   pros::delay(1000);
   left.move_velocity(0);
   right.move_velocity(0);
   std::cout << "Running best auton" << std::endl; }
 void b() { 
   pros::delay(2000);
-  left.move_velocity(-280);
-  right.move_velocity(-280);
+  left.move_velocity(-100);
+  right.move_velocity(-100);
   pros::delay(1000);
   left.move_velocity(0);
   right.move_velocity(0);
