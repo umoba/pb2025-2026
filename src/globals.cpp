@@ -37,9 +37,10 @@ namespace Robot {
 
     // Pneumatics
     pros::adi::Pneumatics tongue('A',false);
-    pros::adi::Pneumatics sorter('B',false);
+    pros::adi::Pneumatics stopper('B',false);
+    
+    pros::adi::Pneumatics sorter('D',false);
     pros::adi::Pneumatics highGoal('C',false);
-    pros::adi::Pneumatics stopper('D',false);
     pros::adi::Pneumatics doublePark('E',false);
 
 
@@ -50,7 +51,7 @@ namespace Robot {
     // horizontal tracking wheel encoder. Rotation sensor, port 20, not reversed
     pros::Rotation horizontalEnc(-11);
     // vertical tracking wheel encoder. Rotation sensor, port 11, reversed
-    pros::Rotation verticalEnc(15);
+    pros::Rotation verticalEnc(14);
 
 
     // lemlib

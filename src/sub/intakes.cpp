@@ -45,16 +45,16 @@ void intake(int state) {
     goalIntake.move_velocity(-200);
     flexIntake.move_velocity(-200);
   }
-  // outtake from storage ((leave system)) 
+  // outtake from storage to low) 
   else if (state == 4) {
     firstIntake.move_velocity(-200);
-    midIntake.move_velocity(200);
-    goalIntake.move_velocity(0);
-    flexIntake.move_velocity(0);
+    midIntake.move_velocity(150);
+    goalIntake.move_velocity(-200);
+    flexIntake.move_velocity(-200);
   }
     // outtake to scoring high goal
   else if (state == 5) {
-    firstIntake.move_velocity(-100);
+    firstIntake.move_velocity(20);
     midIntake.move_velocity(200);
     goalIntake.move_velocity(200);
     flexIntake.move_velocity(200);
@@ -67,6 +67,14 @@ void intake(int state) {
     goalIntake.move_velocity(0);
     flexIntake.move_velocity(0);
   }
+  // outtake to score upper 
+  else if (state == 7) {
+    firstIntake.move_velocity(20);
+    midIntake.move_velocity(200);
+    goalIntake.move_velocity(200);
+    flexIntake.move_velocity(-200);
+
+  }
 }
 
 
@@ -76,15 +84,31 @@ void intakeState(int a) {
 
 // Run the intake
 void Intake::run() {
-  if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+  // Score high goal
+
+    // to or from storage
+  if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+    // high goal
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      intake(5);
+    }
+    // upper goal
+    else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+      intake(7);
+    }
+    else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+      intake(4);
+    }
+    else intake(3);
+  }
+  else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
     intake(0);
   }
+  // Score upper goal
   else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
     intake(1);
   }
-  else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
-    intake(3);
-  }
+
   else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
     intake(2);
   }

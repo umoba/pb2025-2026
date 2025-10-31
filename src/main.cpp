@@ -140,7 +140,7 @@ void opcontrol() {
         // run the subsystems
         subsystem.intake.run();
         subsystem.tongue.run();
-        subsystem.intake.park();
+        subsystem.intake.toggleStopper();
 
         
         // delay to save resources
