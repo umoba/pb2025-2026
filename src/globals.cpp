@@ -29,7 +29,7 @@ namespace Robot {
     // Rotational
 
     // Optical
-    pros::Optical coloring(10);
+    pros::Optical coloring(4);
 
     // Distance
     pros::Distance distance(5);

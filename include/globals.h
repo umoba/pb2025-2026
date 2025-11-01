@@ -51,7 +51,6 @@ namespace Robot {
     extern pros::Distance distance;
     extern pros::Distance distance2;
 
-
     // Pneumatics
     extern pros::adi::Pneumatics tongue;
     extern pros::adi::Pneumatics sorter;
