@@ -59,7 +59,7 @@ namespace Robot {
     // horizontal tracking wheel. 2.75" diameter, 5.75" offset, back of the robot (negative)
     lemlib::TrackingWheel horizontal(&horizontalEnc, lemlib::Omniwheel::NEW_275, -1.375);
     // vertical tracking wheel. 2.75" diameter, 2.5" offset, left of the robot (negative)
-    lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_275, 1.18);
+    lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_2, 1.18);
 
    
     // drivetrain settings
@@ -98,7 +98,7 @@ namespace Robot {
     // sensors for odometry
     lemlib::OdomSensors sensors(&vertical, // vertical tracking wheel
         nullptr, // vertical tracking wheel 2, set to nullptr as we don't have a second one
-        &horizontal, // horizontal tracking wheel
+        nullptr, // horizontal tracking wheel
         nullptr, // horizontal tracking wheel 2, set to nullptr as we don't have a second one
         &filteredIMU // inertial sensor
     );
@@ -111,8 +111,8 @@ namespace Robot {
 
     // input curve for steer input during driver control
     lemlib::ExpoDriveCurve steerCurve(3, // joystick deadband out of 127
-              10, // minimum output where drivetrain will move out of 127
-              1.2 // expo curve gain
+              3, // minimum output where drivetrain will move out of 127
+              1 // expo curve gain
     );
 
     // create the chassis

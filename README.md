@@ -20,3 +20,12 @@
 
 1. Chnaged Intake to a hold 
 2. Changed stir curve
+
+# 11/01_1
+
+1. Ready to test short auton
+2. Added little notes for the Intake class. 
+
+# 11/3_1 
+
+1. Took out horizontal odometry wheel since we have traction wheels.

@@ -16,6 +16,7 @@ const int all = 4;
 static int states[4] = {1, 2, 3, 4};
 int state = -1;
 void intake(int state) {
+  // OVERALL INTAKE FUNCTIONS
   // high goal
   if (state == 0) {
     firstIntake.move_velocity(200);
@@ -75,7 +76,22 @@ void intake(int state) {
     flexIntake.move_velocity(-200);
 
   }
-}
+
+  // COLOR SENSOR FUNCTIONS
+
+  else if (state == 8) {
+    
+  }
+
+  else if (state == 9) {
+    
+  }
+
+  else if (state == 10) {
+    
+  }
+
+ }
 
 
 void intakeState(int a) {
@@ -96,11 +112,13 @@ void Intake::run() {
     else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
       intake(7);
     }
+    // storage to low
     else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
       intake(4);
     }
     else intake(3);
   }
+  // score long goal
   else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
     intake(0);
   }
@@ -108,13 +126,12 @@ void Intake::run() {
   else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
     intake(1);
   }
-
+  // score low goal
   else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
     intake(2);
   }
-  else intake(6);
-
-  
+  // pause
+  else intake(6);  
 }
 
 // Toggle whether the intake is stopping the blocks from scoring or not
@@ -130,16 +147,12 @@ void Intake::color_sort() {
     coloring.set_led_pwm(50);
     if (coloring.get_hue() >= 0.0 && coloring.get_hue() <= 30.0 && !red) {
         if (distance.get_object_velocity() > 0.05 || distance2.get_object_velocity() > 0.05) {
-            sorter.extend();
-            pros::delay(100);
-            sorter.retract();
+
         }
     } 
     else if (coloring.get_hue() >= 180.0 && coloring.get_hue() <= 240.0 && red) {
         if (distance.get_object_velocity() > 0.05 || distance2.get_object_velocity() > 0.05) {
-            sorter.extend();
-            pros::delay(100);
-            sorter.retract();
+          
         }
     }
 

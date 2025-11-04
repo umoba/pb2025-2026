@@ -30,6 +30,10 @@ void leftOne(){
 
 //right (flip left)
 void rightOne(){
+  chassis.moveToPoint(0, 0, 5000);
+chassis.moveToPoint(25.481, 7.216, 5000);
+chassis.moveToPoint(-10.147, 31.795, 5000);
+chassis.moveToPoint(22.775, 32.472, 5000);
 
 }
 
