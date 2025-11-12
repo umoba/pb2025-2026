@@ -27,6 +27,7 @@ namespace Robot {
     struct alteredIMU {
       Robot::FilteredIMU imus;
     };
+    extern pros::Imu imu;
     extern FilteredIMU filteredIMU;
 
     // Controller

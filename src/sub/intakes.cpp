@@ -15,7 +15,7 @@ static bool elevate;
 const int all = 4;
 static int states[4] = {1, 2, 3, 4};
 int state = -1;
-void intake(int state) {
+void Intake::intake(int state) {
   // OVERALL INTAKE FUNCTIONS
   // high goal
   if (state == 0) {

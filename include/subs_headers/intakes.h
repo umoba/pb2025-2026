@@ -14,6 +14,7 @@ public:
     * autonomous.
     */
    bool red;
+   void intake(int state);
    void run();
    void runrev();
    void toggleStopper();

@@ -78,7 +78,18 @@ void initialize() {
 
     // thread to for brain screen and position logging
 
-
+  pros::Task screenTask([&]() {
+    selector.run_auton();
+    while (true) {
+      console.printfln("X: %f", chassis.getPose().x); // x
+      console.printfln("Y: %f", chassis.getPose().y); // y
+      console.printfln("Theta: %f", chassis.getPose().theta); // Use filtered heading
+      // subsystem.intake.color_sort();
+      pros::delay(50); // Ensure sufficient delay
+      console.clear();
+          
+    }
+  });
      
 
 }   
@@ -102,24 +113,40 @@ void competition_initialize() {
 /**
  * Runs during auto
  *
- * This is an example autonomous routine which demonstrates a lot of the features LemLib has to offer
+ *  This is an example autonomous routine which demonstrates a lot of the features LemLib has to offer
  */
 
 void autonomous() {
-  pros::Task screenTask([&]() {
-    selector.run_auton();
-    while (true) {
-      console.printfln("X: %f", chassis.getPose().x); // x
-      console.printfln("Y: %f", chassis.getPose().y); // y
-      console.printfln("Theta: %f", filteredIMU.get_heading()); // Use filtered heading
-      subsystem.intake.color_sort();
-      pros::delay(50); // Ensure sufficient delay
-      console.clear();
-          
-    }
-  });
 
-  selector.run_auton();
+  // (RIGHT 7BLOCKS)
+  subsystem.intake.intake(3);
+  chassis.moveToPoint(1,-12,700, {false});
+  chassis.turnToHeading(23, 300);
+  chassis.moveToPoint(-9,-27, 2000, {false, 40, 0});
+  pros::delay(500);
+  tongue.toggle();
+  chassis.turnToHeading(310, 500);
+  chassis.moveToPoint(-33,-10, 1500, {true, 50});
+  chassis.moveToPose(-33,-29, 180,1200);
+  stopper.toggle();
+  pros::delay(1000);
+  subsystem.intake.intake(5);
+  pros::delay(3000);
+  
+  subsystem.intake.intake(3);
+  // stopper.toggle();
+  chassis.moveToPose(-33,18, 180,1500, {false});
+  pros::delay(3000);
+  chassis.moveToPoint(-32,-25,1200, {true, 70});
+  // stopper.toggle();
+  subsystem.intake.intake(5);
+
+
+
+
+
+
+  // selector.run_auton();
 }
 
 /**
@@ -142,7 +169,6 @@ void opcontrol() {
         subsystem.tongue.run();
         subsystem.intake.toggleStopper();
 
-        
         // delay to save resources
         pros::delay(50);
     }

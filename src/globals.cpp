@@ -1,6 +1,7 @@
 #include "globals.h"// IWYU pragma: keep
 #include "lemlib/api.hpp" // IWYU pragma: keep
 #include "pros/adi.hpp"
+#include "pros/imu.hpp"
 // #include "tasks_headers/activator.h"
 
 
@@ -11,7 +12,8 @@ namespace Robot {
     RobotSubsystems subsystem;
 
     // IMU
-    FilteredIMU filteredIMU(17,0.9);
+    pros::Imu imu(15);
+    FilteredIMU filteredIMU(15,0.9);
 
     // Controller
     pros::Controller controller(pros::E_CONTROLLER_MASTER);
@@ -23,7 +25,7 @@ namespace Robot {
     pros::Motor firstIntake(-13, pros::MotorGearset::green);
     pros::Motor midIntake(-20, pros::MotorGearset::green);
     pros::Motor goalIntake(19, pros::MotorGearset::green);
-    pros::Motor flexIntake(18, pros::MotorGearset::green);
+    pros::Motor flexIntake(-18, pros::MotorGearset::green);
 
 
     // Rotational
@@ -49,7 +51,7 @@ namespace Robot {
 
     // Odometry wheels
     // horizontal tracking wheel encoder. Rotation sensor, port 20, not reversed
-    pros::Rotation horizontalEnc(-11);
+    // pros::Rotation horizontalEnc(-11);
     // vertical tracking wheel encoder. Rotation sensor, port 11, reversed
     pros::Rotation verticalEnc(14);
 
@@ -57,41 +59,41 @@ namespace Robot {
     // lemlib
 
     // horizontal tracking wheel. 2.75" diameter, 5.75" offset, back of the robot (negative)
-    lemlib::TrackingWheel horizontal(&horizontalEnc, lemlib::Omniwheel::NEW_275, -1.375);
+    // lemlib::TrackingWheel horizontal(&horizontalEnc, lemlib::Omniwheel::NEW_275, -1.375);
     // vertical tracking wheel. 2.75" diameter, 2.5" offset, left of the robot (negative)
-    lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_2, 1.18);
+    lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_2, 1.0);
 
    
     // drivetrain settings
     lemlib::Drivetrain drivetrain(&left, // left motor group
       &right, // right motor group
-      11.25, // 10 inch track width
+      10.8, // 10 inch track width
       lemlib::Omniwheel::NEW_325, // using new 3.25" omnis
       450, // drivetrain rpm is 360
       8 // horizontal drift is 2. If we had traction wheels, it would have been 8
     );
 
     // lateral PID controller
-    lemlib::ControllerSettings lateral_controller(9, // proportional gain (kP)
-                                                0.5, // integral gain (kI)
-                                                18, // derivative gain (kD)
-                                                2, // anti windup
-                                                0.25, // small error range, in inches
-                                                100, // small error range timeout, in milliseconds
-                                                0.5, // large error range, in inches
-                                                200, // large error range timeout, in milliseconds
+    lemlib::ControllerSettings lateral_controller(11, // proportional gain (kP)
+                                                0, // integral gain (kI)
+                                                30, // derivative gain (kD)
+                                                0, // anti windup
+                                                0, // small error range, in inches
+                                                0, // small error range timeout, in milliseconds
+                                                0, // large error range, in inches
+                                                0, // large error range timeout, in milliseconds
                                                 0 // maximum acceleration (slew)
     );
 
     // angular PID controller
-    lemlib::ControllerSettings angular_controller(3.9, // proportional gain (kP)
+    lemlib::ControllerSettings angular_controller(5, // proportional gain (kP)
                                                 0, // integral gain (kI)
-                                                23, // derivative gain (kD)
-                                                1, // anti windup
-                                                0.25, // small error range, in inches
-                                                50, // small error range timeout, in milliseconds
-                                                0.5, // large error range, in inches
-                                                100, // large error range timeout, in milliseconds
+                                                30, // derivative gain (kD)
+                                                0, // anti windup
+                                                0, // small error range, in inches
+                                                0, // small error range timeout, in milliseconds
+                                                0, // large error range, in inches
+                                                0, // large error range timeout, in milliseconds
                                                 0 // maximum acceleration (slew)
     );
 
@@ -100,7 +102,7 @@ namespace Robot {
         nullptr, // vertical tracking wheel 2, set to nullptr as we don't have a second one
         nullptr, // horizontal tracking wheel
         nullptr, // horizontal tracking wheel 2, set to nullptr as we don't have a second one
-        &filteredIMU // inertial sensor
+        &imu // inertial sensor
     );
 
     // input curve for throttle input during driver control
