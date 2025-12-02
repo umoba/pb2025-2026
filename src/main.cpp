@@ -1,6 +1,7 @@
 #include "main.h"
 #include "globals.h"// IWYU pragma: keep
 #include "lemlib/pid.hpp"
+#include "pros/misc.h"
 #include "pros/rtos.hpp"
 #include "subs_headers/intakes.h"
 #include "subs_headers/tongue.h"
@@ -84,7 +85,7 @@ void initialize() {
       console.printfln("X: %f", chassis.getPose().x); // x
       console.printfln("Y: %f", chassis.getPose().y); // y
       console.printfln("Theta: %f", chassis.getPose().theta); // Use filtered heading
-      subsystem.intake.color_sort();
+      // subsystem.intake.color_sort();
       pros::delay(50); // Ensure sufficient delay
       console.clear();
           
@@ -140,7 +141,7 @@ void autonomous() {
   chassis.moveToPoint(-32,-10, 1300, {true, 100});
   subsystem.intake.intake(3);
   chassis.moveToPose(-31.5,-31, 180,1000);
-  stopper.toggle();
+  // stopper.toggle();
   tongue.toggle();
   subsystem.intake.intake(9);
   pros::delay(2000);
@@ -182,10 +183,13 @@ void opcontrol() {
         // move the robot
         chassis.arcade(leftY, rightX);
 
+        if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+          wing.toggle();
+        }
         // run the subsystems
         subsystem.intake.run();
         subsystem.tongue.run();
-        subsystem.intake.toggleStopper();
+        // subsystem.intake.toggleStopper();
 
         // delay to save resources
         pros::delay(50);

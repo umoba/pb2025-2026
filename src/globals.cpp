@@ -12,39 +12,39 @@ namespace Robot {
     RobotSubsystems subsystem;
 
     // IMU
-    pros::Imu imu(15);
-    FilteredIMU filteredIMU(15,0.9);
-
+    pros::Imu imu(13);
+    // FilteredIMU filteredIMU(15,0.9);
+// 
     // Controller
     pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
     // Motors
-    pros::MotorGroup right({11, 12, 17},pros::MotorGearset::blue);
-    pros::MotorGroup left({-1, -2, -7},pros::MotorGearset::blue);
-    pros::MotorGroup intakes({10, 20},pros::MotorGearset::blue);
-    pros::Motor firstIntake(-13, pros::MotorGearset::blue);
-    pros::Motor hoodIntake(20, pros::MotorGearset::blue);
-    pros::Motor goalIntake(19, pros::MotorGearset::green);
-    pros::Motor flexIntake(-18, pros::MotorGearset::green);
+    pros::MotorGroup right({3, -1, 2},pros::MotorGearset::blue);
+    pros::MotorGroup left({5, -4, 6},pros::MotorGearset::blue);
+    // pros::MotorGroup intakes({10, 20},pros::MotorGearset::blue);
+    pros::Motor firstIntake(11, pros::MotorGearset::blue);
+    pros::Motor hoodIntake(-10, pros::MotorGearset::blue);
+    // pros::Motor goalIntake(19, pros::MotorGearset::green);
+    // pros::Motor flexIntake(-18, pros::MotorGearset::green);
 
 
     // Rotational
 
     // Optical
-    pros::Optical coloring(3);
+    // pros::Optical coloring(3);
 
-    // Distance
-    pros::Distance distance(5);
-    pros::Distance distance2(16);
+    // // Distance
+    // pros::Distance distance(5);
+    // pros::Distance distance2(16);
 
     // Pneumatics
-    pros::adi::Pneumatics tongue('A',false);
-    pros::adi::Pneumatics stopper('B',false);
+    pros::adi::Pneumatics tongue('C',false);
+    pros::adi::Pneumatics wing('B',false);
     
-    pros::adi::Pneumatics sorter('D',false);
-    pros::adi::Pneumatics highGoal('C',false);
-    pros::adi::Pneumatics doublePark('E',false);
-    pros::adi::Pneumatics midGoalRetract('F', true);
+    // pros::adi::Pneumatics sorter('D',false);
+    // pros::adi::Pneumatics highGoal('C',false);
+    // pros::adi::Pneumatics doublePark('E',false);
+    pros::adi::Pneumatics midGoalRetract('A', true);
 
 
 
@@ -53,7 +53,7 @@ namespace Robot {
     // horizontal tracking wheel encoder. Rotation sensor, port 20, not reversed
     // pros::Rotation horizontalEnc(-11);
     // vertical tracking wheel encoder. Rotation sensor, port 11, reversed
-    pros::Rotation verticalEnc(14);
+    pros::Rotation verticalEnc(12);
 
 
     // lemlib

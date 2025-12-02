@@ -8,7 +8,7 @@ using namespace Robot::Globals;
 Tongue::Tongue() {}
 
 void Tongue::run() {
-  if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+  if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
     tongue.toggle();
   }
 }

@@ -21,7 +21,7 @@ namespace Robot {
     struct RobotSubsystems {
       Robot::Intake intake;
       Robot::Tongue tongue;
-      Robot::Auton auton;
+      // Robot::Auton auton;
     };
     extern RobotSubsystems subsystem;
 
@@ -56,6 +56,8 @@ namespace Robot {
 
     // Pneumatics
     extern pros::adi::Pneumatics tongue;
+
+    extern pros::adi::Pneumatics wing;
     extern pros::adi::Pneumatics sorter;
     extern pros::adi::Pneumatics highGoal;
     extern pros::adi::Pneumatics stopper;

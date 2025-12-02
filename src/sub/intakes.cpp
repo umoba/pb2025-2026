@@ -218,35 +218,27 @@ void Intake::intake(int state) {
   // storage
   else if (state == 3) {
     firstIntake.move_velocity(600);
-    hoodIntake.move_velocity(-600);
+    hoodIntake.move_velocity(-300);
   }
   // stop
   else if (state == 4) {
     firstIntake.move_velocity(0);
     hoodIntake.move_velocity(0);
-    goalIntake.move_velocity(0);
-    flexIntake.move_velocity(0);
   }
   // COLOR SENSOR FUNCTIONS
   else if (state == 8) {
     firstIntake.move_velocity(-200);
     hoodIntake.move_velocity(-100);
-    goalIntake.move_velocity(0);
-    flexIntake.move_velocity(-0);
   }
 
   else if (state == 9) {
     firstIntake.move_velocity(70);
     hoodIntake.move_velocity(200);
-    goalIntake.move_velocity(200);
-    flexIntake.move_velocity(200);
   }
 
   else if (state == 10) {
     firstIntake.move_velocity(200);
     hoodIntake.move_velocity(200);
-    goalIntake.move_velocity(100);
-    flexIntake.move_velocity(200);
   }
 
  }
@@ -285,24 +277,24 @@ void Intake::toggleStopper() {
   }
 }
 
-// Color sorting
-void Intake::color_sort() {
-  if (auton) {
-     coloring.set_led_pwm(50);
-    if (coloring.get_hue() >= 25.0 && coloring.get_hue() <= 30.0 && !red) {
+// // Color sorting
+// void Intake::color_sort() {
+//   if (auton) {
+//      coloring.set_led_pwm(50);
+//     if (coloring.get_hue() >= 25.0 && coloring.get_hue() <= 30.0 && !red) {
         
-      intake(8);
-      pros::delay(500);
-      intake(6);
-    } 
-    else if (coloring.get_hue() >= 180.0 && coloring.get_hue() <= 240.0 && red) {
-        intake(8);
-    }
+//       intake(8);
+//       pros::delay(500);
+//       intake(6);
+//     } 
+//     else if (coloring.get_hue() >= 180.0 && coloring.get_hue() <= 240.0 && red) {
+//         intake(8);
+//     }
 
-  }
+//   }
    
 
-}
+// }
 // Double parking 
 void Intake::park() {
   if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
