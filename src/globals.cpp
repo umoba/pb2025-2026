@@ -22,8 +22,8 @@ namespace Robot {
     pros::MotorGroup right({11, 12, 17},pros::MotorGearset::blue);
     pros::MotorGroup left({-1, -2, -7},pros::MotorGearset::blue);
     pros::MotorGroup intakes({10, 20},pros::MotorGearset::blue);
-    pros::Motor firstIntake(-13, pros::MotorGearset::green);
-    pros::Motor midIntake(-20, pros::MotorGearset::green);
+    pros::Motor firstIntake(-13, pros::MotorGearset::blue);
+    pros::Motor hoodIntake(20, pros::MotorGearset::blue);
     pros::Motor goalIntake(19, pros::MotorGearset::green);
     pros::Motor flexIntake(-18, pros::MotorGearset::green);
 
@@ -31,7 +31,7 @@ namespace Robot {
     // Rotational
 
     // Optical
-    pros::Optical coloring(4);
+    pros::Optical coloring(3);
 
     // Distance
     pros::Distance distance(5);
@@ -44,7 +44,7 @@ namespace Robot {
     pros::adi::Pneumatics sorter('D',false);
     pros::adi::Pneumatics highGoal('C',false);
     pros::adi::Pneumatics doublePark('E',false);
-
+    pros::adi::Pneumatics midGoalRetract('F', true);
 
 
 

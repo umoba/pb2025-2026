@@ -14,6 +14,7 @@ public:
     * autonomous.
     */
    bool red;
+   bool auton;
    void intake(int state);
    void run();
    void runrev();
@@ -24,7 +25,6 @@ public:
 
 private:
    // bool elevate;
-   bool l1;
    bool l2;
    bool up;
    bool dn;

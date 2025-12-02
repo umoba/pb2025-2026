@@ -14,6 +14,7 @@ public:
     * autonomous.
     */
    void run();
+   void right7blocks();
 
    Auton();
 

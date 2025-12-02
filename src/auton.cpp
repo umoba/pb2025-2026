@@ -16,13 +16,13 @@ Auton::Auton() {}
     //v1
 //left --> one goal (long goal): 9
 void leftOne(){
-    chassis.setPose(0, 0, 0);
-    filteredIMU.set_heading(0);
-    
-    // chassis.moveToPose();
-    pros::delay(2000);
-    tongue.extend();
-    chassis.moveToPoint(20,-20, 100);
+  chassis.setPose(0, 0, 0);
+  filteredIMU.set_heading(0);
+
+  // chassis.moveToPose();
+  pros::delay(2000);
+  tongue.extend();
+  chassis.moveToPoint(20, -20, 100);
 
 
 
@@ -44,8 +44,29 @@ void leftLoadFirst(){
 }
 
 //right (flip left)
-void rightLoadFirst(){
-
+void Auton::right7blocks(){
+    // (RIGHT 7BLOCKS)
+  subsystem.intake.intake(3);
+  chassis.moveToPoint(1,-12,700, {false});
+  chassis.turnToHeading(23, 300);
+  chassis.moveToPoint(-9,-27, 2000, {false, 40, 0});
+  pros::delay(500);
+  tongue.toggle();
+  chassis.turnToHeading(310, 500);
+  chassis.moveToPoint(-33,-10, 1500, {true, 50});
+  chassis.moveToPose(-33,-29, 180,1200);
+  stopper.toggle();
+  pros::delay(1000);
+  subsystem.intake.intake(5);
+  pros::delay(3000);
+  
+  subsystem.intake.intake(3);
+  // stopper.toggle();
+  chassis.moveToPose(-33,18, 180,1500, {false});
+  pros::delay(3000);
+  chassis.moveToPoint(-32,-25,1200, {true, 70});
+  // stopper.toggle();
+  subsystem.intake.intake(5);
 }
 
     //v3

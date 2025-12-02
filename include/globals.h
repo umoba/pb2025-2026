@@ -10,6 +10,7 @@
 #include "pros/distance.hpp"
 #include "subs_headers/intakes.h"
 #include "subs_headers/tongue.h"
+#include "auton.h"
 
 
 
@@ -20,6 +21,7 @@ namespace Robot {
     struct RobotSubsystems {
       Robot::Intake intake;
       Robot::Tongue tongue;
+      Robot::Auton auton;
     };
     extern RobotSubsystems subsystem;
 
@@ -38,7 +40,7 @@ namespace Robot {
     extern pros::MotorGroup left;
     extern pros::MotorGroup right;
     extern pros::Motor firstIntake;
-    extern pros::Motor midIntake;
+    extern pros::Motor hoodIntake;
     extern pros::Motor goalIntake;
     extern pros::Motor flexIntake;
 
@@ -58,6 +60,7 @@ namespace Robot {
     extern pros::adi::Pneumatics highGoal;
     extern pros::adi::Pneumatics stopper;
     extern pros::adi::Pneumatics doublePark;
+    extern pros::adi::Pneumatics midGoalRetract;
 
 
     // Odometry wheels

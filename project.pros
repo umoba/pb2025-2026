@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "pushback2526",
+    "project_name": "rightlowl",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -322,7 +322,9 @@
         "version": "2.3.0"
       }
     },
-    "upload_options": {},
+    "upload_options": {
+      "slot": 4
+    },
     "use_early_access": false
   }
 }
