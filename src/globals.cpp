@@ -20,7 +20,7 @@ namespace Robot {
 
     // Motors
     pros::MotorGroup right({3, -1, 2},pros::MotorGearset::blue);
-    pros::MotorGroup left({5, -4, 6},pros::MotorGearset::blue);
+    pros::MotorGroup left({-5, 4, -6},pros::MotorGearset::blue);
     // pros::MotorGroup intakes({10, 20},pros::MotorGearset::blue);
     pros::Motor firstIntake(11, pros::MotorGearset::blue);
     pros::Motor hoodIntake(-10, pros::MotorGearset::blue);
@@ -38,13 +38,9 @@ namespace Robot {
     // pros::Distance distance2(16);
 
     // Pneumatics
+    pros::adi::Pneumatics midGoalRetract('A', true);
     pros::adi::Pneumatics tongue('C',false);
     pros::adi::Pneumatics wing('B',false);
-    
-    // pros::adi::Pneumatics sorter('D',false);
-    // pros::adi::Pneumatics highGoal('C',false);
-    // pros::adi::Pneumatics doublePark('E',false);
-    pros::adi::Pneumatics midGoalRetract('A', true);
 
 
 
@@ -67,16 +63,16 @@ namespace Robot {
     // drivetrain settings
     lemlib::Drivetrain drivetrain(&left, // left motor group
       &right, // right motor group
-      10.8, // 10 inch track width
+      12, // 10 inch track width
       lemlib::Omniwheel::NEW_325, // using new 3.25" omnis
       450, // drivetrain rpm is 360
-      8 // horizontal drift is 2. If we had traction wheels, it would have been 8
+      2 // horizontal drift is 2. If we had traction wheels, it would have been 8
     );
 
     // lateral PID controller
-    lemlib::ControllerSettings lateral_controller(11, // proportional gain (kP)
+    lemlib::ControllerSettings lateral_controller(3.7, // proportional gain (kP)
                                                 0, // integral gain (kI)
-                                                30, // derivative gain (kD)
+                                                25, // derivative gain (kD)
                                                 0, // anti windup
                                                 0, // small error range, in inches
                                                 0, // small error range timeout, in milliseconds
@@ -86,9 +82,9 @@ namespace Robot {
     );
 
     // angular PID controller
-    lemlib::ControllerSettings angular_controller(5, // proportional gain (kP)
+    lemlib::ControllerSettings angular_controller(5.5, // proportional gain (kP)
                                                 0, // integral gain (kI)
-                                                30, // derivative gain (kD)
+                                                25, // derivative gain (kD)
                                                 0, // anti windup
                                                 0, // small error range, in inches
                                                 0, // small error range timeout, in milliseconds

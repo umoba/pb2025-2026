@@ -52,7 +52,9 @@ rd::Console console;
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-
+  if (!midGoalRetract.is_extended()) {
+      midGoalRetract.extend();
+  }
     chassis.calibrate(); // Calibrate sensors
 
     selector.on_select([](std::optional<rd::Selector::routine_t> routine) {
@@ -116,49 +118,145 @@ void competition_initialize() {
  *
  *  This is an example autonomous routine which demonstrates a lot of the features LemLib has to offer
  */
+// left 7
+  //      wing.toggle();
+  // chassis.setPose(0, 0, 0);
+  // subsystem.intake.intake(3);
+  // chassis.moveToPoint(8,-27, 1300, {false, 60, 0});
+  // pros::delay(1250);
+  // tongue.toggle();
+  // pros::delay(250);
+  // chassis.moveToPoint(25,0, 1350, {true, 100});
+  // chassis.turnToHeading(180,950);
+  // chassis.moveToPoint(25,18,1500, {false, 50, 20});
+  // subsystem.intake.intake(3);
+  // pros::delay(500);
+  //   subsystem.intake.intake(4);
+  // pros::delay(100);
+  // subsystem.intake.intake(3);
+  // pros::delay(2000);
+  // chassis.moveToPoint(25,-31,1100, {true, 60});
+  // pros::delay(800);
+  // subsystem.intake.intake(0);
+  // tongue.toggle();
+  // chassis.moveToPoint(25,-32,1100, {true, 60});
+  // pros::delay(1800);
+  // subsystem.intake.intake(2);
+  // pros::delay(70);
+  // subsystem.intake.intake(0);
+  // chassis.moveToPoint(25,-8,500, {false});
+  // chassis.turnToHeading(45,300);
+  // chassis.moveToPoint(13.5,-15,1000, {false});
+  // chassis.turnToHeading(350,600);
+  // wing.toggle();
+  // chassis.moveToPoint(13.5,-25,1000, {false, 80, 55});
+
+
+//  right 7
+//   wing.toggle();
+// chassis.setPose(0, 0, 0);
+//   subsystem.intake.intake(3);
+//   chassis.moveToPoint(-7,-25, 1300, {false, 55, 0});
+//   pros::delay(1200);
+//   tongue.toggle();
+//   pros::delay(300);
+//   chassis.moveToPoint(-24.5,0, 1300, {true, 100});
+//   chassis.turnToHeading(180,1000);
+//   chassis.moveToPoint(-24.5,16,1400, {false, 50, 20});
+//   subsystem.intake.intake(3);
+//   pros::delay(2500);
+//   chassis.moveToPoint(-24,-25,1000, {true, 60});
+//   pros::delay(950);
+//   subsystem.intake.intake(0);
+//   pros::delay(3000);
+//   chassis.moveToPoint(-24,-35,1000, {true, 60});
+//   chassis.cancelMotion();
+//   tongue.toggle();
+//   chassis.moveToPoint(-24,0,600, {false, 80, 30});
+//   chassis.moveToPoint(-14.7,-12,700, {true, 80, 30});
+//   wing.toggle();
+//   chassis.moveToPoint(-14.7,-26,900, {true, 80, 47});
+
+// left mid (NOT DONE)
+
+  // wing.toggle();
+  // chassis.setPose(0, 0, 0);
+  // subsystem.intake.intake(3);
+  // chassis.moveToPoint(8,-25, 1300, {false, 55, 0});
+  // pros::delay(1200);
+  // tongue.toggle();
+  // pros::delay(250);
+  // chassis.turnToHeading(225,1000);
+  // chassis.moveToPoint(-9.3, -26.1, 1300, {true, 50});
+  
+  // chassis.turnToHeading(225,500);
+  // pros::delay(1200);
+  // midGoalRetract.extend();
+  // subsystem.intake.intake(8);
+  // midGoalRetract.toggle();
+  // pros::delay(1500);
+  // midGoalRetract.toggle();
+  // subsystem.intake.intake(3);
+  // chassis.moveToPoint(25,0, 1500, {true, 100});
+  // chassis.turnToHeading(180,850);
+  // chassis.moveToPoint(25,18,1300, {false, 50, 20});
+  // subsystem.intake.intake(3);
+  // pros::delay(2300);
+  // chassis.moveToPoint(25,-31,1000, {true, 60});
+  // pros::delay(800);
+  // subsystem.intake.intake(0);
+  // tongue.toggle();
+  // chassis.moveToPoint(25,-32,1000, {true, 60});
+  // pros::delay(1800);
+  // subsystem.intake.intake(4);
 
 void autonomous() {
-  chassis.setPose(0, 0, 0);
+  wing.toggle();
+chassis.setPose(0, 0, 0);
   subsystem.intake.intake(3);
-  chassis.moveToPoint(1,-12,700, {false});
-  chassis.turnToHeading(23, 300);
-  chassis.moveToPoint(-9,-27, 1000, {false, 40, 0});
-  pros::delay(500);
-  tongue.toggle();                                                                                                                                                                                                                             
-  chassis.turnToHeading(310, 500);
-  pros::delay(300);
-
-  chassis.moveToPose(4.7, -34.2, 313,1200, {false});
-  pros::delay(500);
+  chassis.moveToPoint(-7,-23.7, 1300, {false, 55, 0});
+  pros::delay(900);
   tongue.toggle();
-  subsystem.intake.intake(4);
-  chassis.turnToHeading(318, 300);
-  
-  pros::delay(800);
-  subsystem.intake.intake(6);
-  
-
-  chassis.moveToPoint(-32,-10, 1300, {true, 100});
-  subsystem.intake.intake(3);
-  chassis.moveToPose(-31.5,-31, 180,1000);
-  // stopper.toggle();
-  tongue.toggle();
-  subsystem.intake.intake(9);
-  pros::delay(2000);
-  chassis.turnToHeading(180, 300);
   pros::delay(300);
+  chassis.moveToPoint(-24,0, 1300, {true, 100});
+  chassis.turnToHeading(175,1050);
+  chassis.moveToPoint(-23.5,18.3,1450, {false, 50, 23});
   subsystem.intake.intake(3);
-  chassis.moveToPoint(-30.7,16,1400, {false, 50, 20});
-  subsystem.intake.intake(10);
-  pros::delay(2000);
-  subsystem.intake.intake(6);
-  chassis.moveToPoint(-30,-25,1100, {true, 65});
-  // stopper.toggle();
-  pros::delay(700);
+  pros::delay(2500);
+  chassis.moveToPoint(-23.5,-25,1000, {true, 60});
+  pros::delay(950);
   subsystem.intake.intake(0);
-  // subsystem.intake.intake(9);
+  pros::delay(100);
+  subsystem.intake.intake(2);
+  pros::delay(80);
+  subsystem.intake.intake(0);
+  pros::delay(300);
+  subsystem.intake.intake(2);
+  pros::delay(80);
+  subsystem.intake.intake(0);
+  pros::delay(1000);
+  subsystem.intake.intake(2);
+  pros::delay(200);
+  subsystem.intake.intake(0);
+  pros::delay(1000);
+  chassis.moveToPoint(-23.3,-35,1100, {true, 60});
+  chassis.cancelMotion();
+  subsystem.intake.intake(4);
+  tongue.toggle();
+  chassis.moveToPoint(-23.3,0,600, {false, 80, 30});
+  chassis.moveToPoint(-14.7,-12,700, {true, 80, 30});
+  wing.toggle();
+  chassis.moveToPoint(-14.7,-24,780, {true, 80, 47});
 
-  // subsystem.intake.auton = false;
+
+
+
+
+
+    // chassis.swingToPoint(18, -20, right1000);
+
+
+  subsystem.intake.auton = false;
   
 
 
@@ -176,6 +274,8 @@ void opcontrol() {
 
     console.printf("Hello");
     while (true) {
+
+
         // get joystick positions
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
         int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
@@ -189,7 +289,6 @@ void opcontrol() {
         // run the subsystems
         subsystem.intake.run();
         subsystem.tongue.run();
-        // subsystem.intake.toggleStopper();
 
         // delay to save resources
         pros::delay(50);

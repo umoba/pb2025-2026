@@ -210,6 +210,11 @@ void Intake::intake(int state) {
     firstIntake.move_velocity(600);
     hoodIntake.move_velocity(600);
   }
+  // upper goal
+  else if (state == 1) {
+    firstIntake.move_velocity(600);
+    hoodIntake.move_velocity(-75);
+  }
   // low goal
   else if (state == 2) {
     firstIntake.move_velocity(-600);
@@ -218,7 +223,7 @@ void Intake::intake(int state) {
   // storage
   else if (state == 3) {
     firstIntake.move_velocity(600);
-    hoodIntake.move_velocity(-300);
+    hoodIntake.move_velocity(-170);
   }
   // stop
   else if (state == 4) {
@@ -227,8 +232,8 @@ void Intake::intake(int state) {
   }
   // COLOR SENSOR FUNCTIONS
   else if (state == 8) {
-    firstIntake.move_velocity(-200);
-    hoodIntake.move_velocity(-100);
+    firstIntake.move_velocity(600);
+    hoodIntake.move_velocity(200);
   }
 
   else if (state == 9) {
@@ -255,6 +260,10 @@ void Intake::run() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
       intake(0);
     }
+    else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+      intake(1);
+    }
+
     // upper middle goal
     else if( controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
       midGoalRetract.toggle();
